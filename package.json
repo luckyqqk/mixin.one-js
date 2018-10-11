@@ -1,0 +1,32 @@
+{
+  "name": "mixin.one-js",
+  "version": "1.0.0",
+  "description": "\u0016mixin.one test sdk by nodejs",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luckyqqk/mixin.one-js.git"
+  },
+  "keywords": [
+    "mixin.one-js"
+  ],
+  "author": "luckyqqk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luckyqqk/mixin.one-js/issues"
+  },
+  "homepage": "https://github.com/luckyqqk/mixin.one-js#readme",
+  "dependencies": {
+    "async": "^2.6.1",
+    "int64-buffer": "^0.99.1007",
+    "jsonwebtoken": "^8.3.0",
+    "node-forge": "^0.7.6",
+    "request": "^2.88.0"
+  }
+}
