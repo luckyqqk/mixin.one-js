@@ -2,23 +2,24 @@
 mixin.one test sdk by nodejs
 
 #### 首先,需要感恩
-思路来源于[Ju Huo先生的mixin-node](https://github.com/virushuo/mixin-node.git),在此表示感谢.
+思路来源于[Ju Huo的mixin-node](https://github.com/virushuo/mixin-node.git),在此表示感谢.
 
 #### 简介
-本项目是我公司项目中需要的一个mixin模块,由本人封装以供使用.
-目前我公司项目需要快速展示效果,demo出来后会专门做充值这块,所以该项目暂无充值代码.
-仅有创建子用户,给子用户设置pin_code(支付密码),根/子账户相互转账的功能.
+本项目是我公司项目中需要的一个mixin模块,由本人封装以供使用.  
+目前我公司项目需要快速展示效果,demo出来后会专门做充值这块,所以该项目暂无充值代码.  
+仅有创建子用户,给子用户设置pin_code(支付密码),根/子账户相互转账的功能.  
 
 #### 目的
-仅以此项目提供一个可读性好一些的sdk思路,
-一来感谢mixin团队对用户对接api时的支持,
-二来方便其他js开发者快速理解mixin-api.
+仅以此项目提供一个可读性好一些的sdk思路,  
+一来感谢mixin团队对用户对接api时的支持,  
+二来方便其他js开发者快速理解mixin-api.  
 
 #### 测试使用
 虽本项目为test sdk,但本人还是着力封装,以便后期维护扩展(毕竟用户支付还未完成).
-所以项目中的方法,也可以直接使用.言归正传:
+所以项目中的方法,也可以直接使用.  
+言归正传,开始测试:  
 1. 申请app账户,详情参见[mixin导读](https://developers.mixin.one/guides)
-2. 将申请的app信息黏贴到本项目的example下的mixinTest.js里的变量accountInfo对应字段中.
+2. 将申请的app信息粘贴到本项目的example下的mixinTest.js里的变量accountInfo对应字段中.
 3. 进入项目根目录,下载依赖包 ```cd mixin.one-js && npm install```.
 4. 运行mixinTest.js  ```cd mixin.one-js/example && node mixinTest.js```
 5. 查看打印
