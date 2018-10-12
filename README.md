@@ -19,13 +19,15 @@ mixin.one test sdk by nodejs
 所以项目中的方法,也可以直接使用.  
 言归正传,开始测试:  
 1. 申请app账户,详情参见[mixin导读](https://developers.mixin.one/guides)
-2. 将申请的app信息粘贴到本项目的example下的mixinTest.js里的变量accountInfo对应字段中.
-3. 进入项目根目录,下载依赖包 ```cd mixin.one-js && npm install```.
-4. 运行mixinTest.js  ```cd mixin.one-js/example && node mixinTest.js```
-5. 查看打印
+2. 找个硬盘位置,克隆该项目:```git clone https://github.com/luckyqqk/mixin.one-js.git```
+3. 项目中example下有一个mixinTest.js,找到其的accountInfo变量.
+4. 将申请的mixin的app信息粘贴到accountInfo对应字段中.
+5. 进入项目根目录,下载依赖包 ```cd mixin.one-js && npm install```.
+6. 运行mixinTest.js  ```cd mixin.one-js/example && node mixinTest.js```
+7. 查看打印
 
 #### 测试步骤说明
-因为每次调用均是异步返回,本人使用async包里的waterfall来控制流程(异步思维),测试代码,顺手就好,效果跟es6的async/aweit一样(同步思维).
+因为每次调用均是异步返回,本人使用async包里的waterfall来控制流程(异步思维),效果跟es6的async/aweit一样(同步思维),测试代码,顺手就好.
 1. 创建子账户
 2. 给子账户绑定支付密码(pin_code)
 3. 给子账户转1个币,至于转什么币,由变量useSymbol来控制,本测试用的CNB(吹牛币,^.^)
