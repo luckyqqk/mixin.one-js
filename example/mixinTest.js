@@ -3,11 +3,11 @@ const Account = mixinOne.account;
 const mixinAPI = mixinOne.api;
 
 let accountInfo = {
-    ClientId        : '********-498e-4136-8d7b-9476761044cb',
-    ClientSecret    : '****************bdbca2538355a21796ad1bd77507862c956fc577d6101',
+    ClientId        : '*******-498e-4136-8d7b-9476761044cb',
+    ClientSecret    : '*******a2538355a21796ad1bd77507862c956fc577d6101',
     PinCode         : '****59',
-    SessionId       : '********-ce4f-4dfe-adc3-3f10154dba8d',
-    PinToken        : '****************atAELKb4G7ORAJdfo37EYKea6jp63VURzYp6pm2c61o+St+dmzvQxeXp1s=',
+    SessionId       : '*******-ce4f-4dfe-adc3-3f10154dba8d',
+    PinToken        : '*******/yu3CapX6MaFQGKgU9sPR6VxMpKcDS2iSev3yNatAELKb4G7ORAJdfo37EYKea6jp63VURzYp6pm2c61o+St+dmzvQxeXp1s=',
     PrivateKey      : `-----BEGIN RSA PRIVATE KEY-----
 *******************Wxu0U4cQTomlJdZ85SBHoqujc7rVUZRnP+j5NMVLFcIqV
 *******************/YfU2YTxIgNCanEsOpPQVCbaj0U/Rr16IA4+plsFjJ9bv
@@ -30,6 +30,8 @@ let account = new Account(accountInfo);
 let useSymbol = 'CNB';  // 我们使用吹牛币来进行测试,所以请在运行代码之前先给主账户转入CNB,以便资产列表中可以找到CNB
 let PinCode = '123456'; // 给子账号添加的pin_code,正式环境需要用户来设置此code,该code即为用户的支付密码.
 
+let traceId = mixinOne.uuidv4();
+
 function getSymbolAssetId(account, useSymbol, cb) {
     mixinAPI.readAssets(account).then(assetsArr=>{
         let tempAsset = null,
@@ -43,6 +45,7 @@ function getSymbolAssetId(account, useSymbol, cb) {
             cb(null, tempAsset);
             return;
         }
+        cb('no this symbol');
     }).catch(err=>{
         cb(err);
     });
@@ -78,7 +81,7 @@ async.waterfall([
                 return;
             }
             let assetId = asset['asset_id'];
-            mixinAPI.transfer(account, encryptPin, assetId, sonAccount.ClientId, '1', 'rootTransferToSon').then(data=>{
+            mixinAPI.transfer(account, encryptPin, assetId, sonAccount.ClientId, '1', 'rootTransferToSon', traceId).then(data=>{
                 console.error("rootTransferToSon::::::::::::::::");
                 console.error(data);
                 _cb(null, sonAccount, assetId);
@@ -102,12 +105,23 @@ async.waterfall([
             _cb('sonAccount encryptPin is null');
             return;
         }
-        mixinAPI.transfer(sonAccount, encryptPin, assetId, account.ClientId, '1', 'sonTransferToRoot').then(data=>{
+        mixinAPI.transfer(sonAccount, encryptPin, assetId, account.ClientId, '1', 'sonTransferToRoot', traceId).then(data=>{
             console.error("sonTransferToRoot::::::::::::::::");
             console.error(data);
             _cb(null, sonAccount, assetId);
         }).catch(err=>{
-            _cb(err);
+            console.error("sonTransferToRoot err::::::::::::::::");
+            console.error(err);
+            encryptPin = mixinOne.encryptPin(sonAccount, PinCode);
+            if (!encryptPin) {
+                _cb('sonAccount encryptPin is null');
+                return;
+            }
+            mixinAPI.transfer(sonAccount, encryptPin, assetId, account.ClientId, '1', 'sonTransferToRoot').then(data=>{
+                _cb(null, sonAccount, assetId);
+            }).catch(err=>{
+                console.error(err);
+            })
         });
     },
 ], (err, sonAccount, assetId)=>{
