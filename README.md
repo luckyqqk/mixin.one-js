@@ -20,7 +20,7 @@ mixin是区块链币种的钱包应用.
 虽本项目为test sdk,但本人还是着力封装,以便后期维护扩展.
 所以项目中的方法,也可以直接使用.  
 言归正传,开始测试:  
-测试一(账号申请,转账等)
+测试一(账号申请,转账等)  
 1. 申请app账户,详情参见[mixin导读](https://developers.mixin.one/guides)
 2. 找个硬盘位置,克隆该项目:```git clone https://github.com/luckyqqk/mixin.one-js.git```
 3. 将申请的mixin的app信息粘贴到项目appData/appData对应字段中.
@@ -28,7 +28,7 @@ mixin是区块链币种的钱包应用.
 5. 运行example/mixinTest.js  ```cd mixin.one-js/example && node mixinTest.js```
 6. 查看打印
 
-测试二(扫描充值)
+测试二(扫描充值)  
 运行example/mixinLogic中的doNetworkSnapshots方法
 
 #### 测试步骤说明
