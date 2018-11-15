@@ -166,7 +166,22 @@ module.exports = (function(){
             });
         })
     }
-
+    
+    /**
+     * 扫描充值/转账记录
+     *
+     * 注:根据业务逻辑的实现不同,扫描后所做的操作也就不同,还得看自己的产品解决方案是怎样的.
+     *
+     * 我们是用了1业务用户对应两个mixin用户.
+     * 一个mixin用户用于充值,一个mixin用户用户付费.
+     *
+     * 之所以选择这样的方案,是因为比特币的充值是很慢的,
+     * 我们希望以后只要是监听到有1个块确认(目前未实现,但实现了双mixin用户的结构和相应的逻辑),
+     * 就先从主账户向用户的付费账户转入相应币值的比特币.
+     * 等到用户的充值账户到账的时候,再将充值账户中的钱转入主账户.
+     * 
+     * @param start
+     */
     function doNetworkSnapshots(start) {
         if (!snapshotStatus) {
             console.error(`doNetworkSnapshots stopped`);
